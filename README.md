@@ -1,4 +1,4 @@
-  <img src="imgs/full_logo_white_n_red.PNG" width="356" height="200" alt="logo">
+  <img src="imgs/full_logo_white_n_red.PNG" width="400" height="200" alt="logo">
   
 ---
 "Eyes Everywhere, Intelligence at Work." 👀🤖 </p>
