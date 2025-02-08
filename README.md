@@ -1,2 +1,7 @@
-# Embedded-Software-for-the-IoT-project
-Repository dedicated for the project of "Embedded Software for the IoT"
+<h1 align="center">Smart Surveillance</h1>
+<p align="center">
+  <img src="imgs/logo.png" alt="logo">
+</p>
+
+---
+
