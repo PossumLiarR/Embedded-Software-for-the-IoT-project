@@ -1,6 +1,5 @@
-<h1 align="center">Smart Surveillance</h1>
 <p align="center">
-  <img src="imgs/logo.png" alt="logo">
+  <img src="imgs/full_logo_black_n_blue.PNG" alt="logo">
 </p>
 
 ---
