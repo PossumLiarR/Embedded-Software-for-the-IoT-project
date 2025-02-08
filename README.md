@@ -1,17 +1,16 @@
-<p align="center">
-  <img src="imgs/full_logo_white_n_red.PNG" width="533" height="300" alt="logo">
-
+  <img src="imgs/full_logo_white_n_red.PNG" width="356" height="200" alt="logo">
+  
 ---
 "Eyes Everywhere, Intelligence at Work." 👀🤖 </p>
 Meet Smart Surveillance: *TBD...(Sommario dove si descrive super fast cos'è e cosa fa il progetto)* </p>
 Here is the completed Smart Surveillance system, ready for action!
 <p align="center">  
-  <img src="imgs/full_project" alt="Built project">
+  <img src="imgs/full_project" alt="Built system">
 
 ---
 
 ## 🛠️ Main features
-The most important features of Smart Surveillance are:
+Smart Surveillance offers the following key features:
 - *TBD...(Inserire le caratteristiche principali del sistema, ho messo tipo degli esempi a caso da cambiare per rendere un pò l'idea)*
 - Yolo motion detection for this ecc...
 - Possibility to do this ecc...
@@ -26,7 +25,7 @@ Get a better understanding of the project by checking out the following links! <
 *TBD...(Inserire un link per il video yt e per il pptx tra parentesi finali)*
 
 ## 📝 Project layout
-Follow this layout to understand all the contents of the repository!
+Feel free to have a look at this layout to understand the full contents of the repository!
 ```
 .
 ├──
@@ -39,7 +38,7 @@ Follow this layout to understand all the contents of the repository!
 *TBD...(Completare con il layout rimanente una volta concluso tutto la repository e il codice del progetto)*
 
 ## 🚀 About us
-Currently our developer's team is composed by:
+Currently, our development team is composed of:
 |Name|Email|Contribution|
 |--|--|--|
 |🎩 Leonardo Chistè|leonardo.chiste@studenti.unitn.it|*TBD...(Completare con il contributo di Leonardo)*|
@@ -47,4 +46,4 @@ Currently our developer's team is composed by:
 |🌟 Alberto Battistini|alberto.battistini@studenti.unitn.it|*TBD...(Completare con il contributo di Alberto)*|
 |🌟 Saksham Bakshi|saksham.bakshi@studenti.unitn.it|*TBD...(Completare con il contributo di Sak)*|
 
-If you have any feedback, please reach us out. Of course, contributions are also always welcome!
+If you have any feedback, please reach out to us. Of course, contributions are also always welcome!
