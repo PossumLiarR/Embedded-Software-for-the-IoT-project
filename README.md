@@ -54,6 +54,7 @@ Clone the repository.
 
 #### Schematic
 <img src="imgs/scheme.png" width="400" height="200" alt="scheme">
+
 #### How to build
 1. Assemble the servo supports;
 2. Connect the servos signal cable (orange) to pin 2.4 and 2.5 of MSP432P401R;
