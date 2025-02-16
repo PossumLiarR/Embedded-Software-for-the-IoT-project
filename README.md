@@ -3,7 +3,7 @@
 
 ---
 "Eyes Everywhere, Intelligence at Work." 👀🤖 </p>
-Meet Smart Surveillance: *TBD...(Sommario dove si descrive super fast cos'è e cosa fa il progetto)* <br>
+Meet Smart Surveillance: an advanced motion-tracking system that detects movement, adjusts the camera automatically, and sends alerts via Telegram for real-time monitoring. <br>
 Here is the completed Smart Surveillance system, ready for action!
 <p align="center">  
   <img src="imgs/full_project" alt="Built system">
@@ -12,13 +12,11 @@ Here is the completed Smart Surveillance system, ready for action!
 
 ## 🛠️ Main features
 Smart Surveillance offers the following key features:
-- *TBD...(Inserire le caratteristiche principali e funzioni del sistema, ho messo tipo degli esempi a caso da cambiare per rendere un pò l'idea)*
-- Yolo motion detection for this ecc...
-- Possibility to do this ecc...
-- Real-time readings for this ecc...
-
-
-
+- Frame to frame motion detection
+- GrayScale imaging for faster and more accurate processing
+- Separation of frame using 3x3 grid to subdivide motion direction
+- Motors centering the camera to the detected movement area
+- Images are sent to a Telegram Bot  
 
 <br>
 
@@ -31,12 +29,22 @@ To bring this project to life, we will need the following:
 - ecc...
 
 #### Software
-- *TBD...(Inserire tutti i software usati,da ide a librerie extra, ho messo un esempio a caso da cambiare per rendere l'idea)*
-- Code Composer Studio Integrated Development Environment (IDE) ecc...
-- ecc... 
-
-
-
+##### IDE:
+- Code Composer Studio for MSP432 Launchpad
+- Arduino IDE for the ESP32 Cam
+##### Libraries:
+- stdio.h        
+- stdlib.h       
+- string.h
+- stdint.h
+- stdbool.h
+- ti/devices/msp432p4xx/driverlib/driverlib.h
+- "esp_camera.h"         ESP32-CAM camera driver
+- "driver/uart.h"        UART communication driver for ESP32
+- WiFi.h                 ESP32 wifi support
+- HTTPClient.h           Library to easily make HTTP GET, POST and PUT requests to a web server
+- WiFiClientSecure.h     Expands WiFi.h with SSL TLS secure connections
+- JPEGDEC.h              Library for decoding JPEG images on microcontrollers and low-power devices
 
 <br>
 
@@ -60,9 +68,6 @@ Embark on your journey to build and run your own system by following the steps o
 #### How to burn
 *TBD...(Inserire come far partire Smart Surveillance... ho buttato giù una bozza random)* <br>
 Once the firmware is loaded on the board, it is sufficient to provide power to it to run everything properly.
-
-
-
 
 <br>
 
