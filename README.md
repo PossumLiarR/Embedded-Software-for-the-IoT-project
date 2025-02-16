@@ -24,9 +24,12 @@ Smart Surveillance offers the following key features:
 To bring this project to life, we will need the following:
 
 #### Hardware
-- *TBD...(Inserire tutti i componenti usati, da boards a cavi, ho messo un esempio a caso da cambiare per rendere l'idea)*
-- 5x Connectors ecc...
-- ecc...
+- MSP432P401R Launchpad;
+- ESP32 Cam;
+- 2 SG90 or MS18 servos;
+- Servo supports and ESP32 Cam mount;
+- USB power supply for ESP32 Cam and USB cable for MSP432P401R;
+- Jumper cables and breadboard (optional).
 
 #### Software
 ##### IDE:
@@ -47,21 +50,28 @@ To bring this project to life, we will need the following:
 <br>
 
 ## 🎬 Get started
-Embark on your journey to build and run your own system by following the steps outlined in this comprehensive guide!
+Clone the repository.
 
 #### Schematic
 *TBD...(Inserire immagine/schema che mostra tutti i collegamenti coi cavi tra scheda, motori, ecc... e il pinout)*
 
 #### How to build
 *TBD...(Inserire i passi seguiti per creare montare il circuito da zero)*
-1. Connect the cables, follow the schematic, ecc...
-2. ecc... 
+1. Assemble the servo supports;
+2. Connect the servos signal cable (orange) to pin 2.4 and 2.5 of MSP432P401R;
+3. To power the servos, you can use the MSP432P401R's 5 V power supplies, or use an external power supply;
+4. Use a USB adaptor to connect the 5 V and GND pins of ESP32 Cam, you can use pin 1 and 3 for debug (standart UART interface);
+5. Connect pin 14 and pin 15 of ESP32 Cam to pin 3.2 (RX) and pin 3.3 (TX) of MSP432P401R, you connect a ground pin to the ESP32'ground for signal stability;
+6. Attach the ESP32 Cam to the servo supports.
 
 #### How to setup the firmware
 *TBD...(Inserire i passi seguiti per caricare il progetto da github sul software e farlo partire)*
-1. Clone this GitHub repo ecc...
-2. Import ecc...
-3. ecc...
+1. Create a Telegram bot, get the bot token and the chat ID;
+2. Download the ESP32 driver on Arduino IDE, if not already istalled;
+3. In the config.h file change the ssid, password, bot token and chat token to your WiFi credentials and your bot credentials, make sure the Telegram certificate is still valid;
+4. Upload the code to ESP32 Cam;
+5. Connect the ESP32 Cam, follow the schematics (Having a common ground between MSP432P401R and ESP32 CAM improves serial communication reliability);
+6. Build and upload the code to MSP432P401R.
 
 #### How to burn
 *TBD...(Inserire come far partire Smart Surveillance... ho buttato giù una bozza random)* <br>
@@ -72,8 +82,8 @@ Once the firmware is loaded on the board, it is sufficient to provide power to i
 ## 🧑‍💻 User guide
 To fully harness the capabilities of the system, carefully explore this section! <br>
 *TBD...(Inserire come l'utente usa Smart Surveillance una volta fatto partire... aggiunge anche note o problematiche a cui bisogna stare attenti)*
-
-
+Make sure the cables do not disconnect while the servo turret is moving. Make sure the ESP32 Cam power supply is 5 V and at least 2 mA, because it is power hungry. 
+Calibrate the ESP32 Cam motion threshold to the distance you expect the movement to be (run tests).
 
 
 <br>
