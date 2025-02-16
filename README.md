@@ -53,10 +53,8 @@ To bring this project to life, we will need the following:
 Clone the repository.
 
 #### Schematic
-*TBD...(Inserire immagine/schema che mostra tutti i collegamenti coi cavi tra scheda, motori, ecc... e il pinout)*
-
+<img src="imgs/scheme.png" width="400" height="200" alt="scheme">
 #### How to build
-*TBD...(Inserire i passi seguiti per creare montare il circuito da zero)*
 1. Assemble the servo supports;
 2. Connect the servos signal cable (orange) to pin 2.4 and 2.5 of MSP432P401R;
 3. To power the servos, you can use the MSP432P401R's 5 V power supplies, or use an external power supply;
@@ -65,16 +63,16 @@ Clone the repository.
 6. Attach the ESP32 Cam to the servo supports.
 
 #### How to setup the firmware
-*TBD...(Inserire i passi seguiti per caricare il progetto da github sul software e farlo partire)*
 1. Create a Telegram bot, get the bot token and the chat ID;
-2. Download the ESP32 driver on Arduino IDE, if not already istalled;
-3. In the config.h file change the ssid, password, bot token and chat token to your WiFi credentials and your bot credentials, make sure the Telegram certificate is still valid;
-4. Upload the code to ESP32 Cam;
-5. Connect the ESP32 Cam, follow the schematics (Having a common ground between MSP432P401R and ESP32 CAM improves serial communication reliability);
-6. Build and upload the code to MSP432P401R.
+2. Clone the repository;
+3. Download the ESP32 driver on Arduino IDE, if not already istalled;
+4. In the config.h file change the ssid, password, bot token and chat token to your WiFi credentials and your bot credentials, make sure the Telegram certificate is still valid;
+5. Upload the code to ESP32 Cam;
+6. Connect the ESP32 Cam, follow the schematics (Having a common ground between MSP432P401R and ESP32 CAM improves serial communication reliability);
+7. Build and upload the code to MSP432P401R.
 
 #### How to burn
-*TBD...(Inserire come far partire Smart Surveillance... ho buttato giù una bozza random)* <br>
+<br>
 Once the firmware is loaded on the board, it is sufficient to provide power to it to run everything properly.
 
 <br>
