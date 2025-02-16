@@ -266,7 +266,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     String url = "https://api.telegram.org/bot" + String(botToken) + "/sendPhoto";
     
     if (!client.connect("api.telegram.org", 443)) { // Connect to Telegram server
-        Serial.println("❌ Connection to Telegram failed!");
+        Serial.println("Connection to Telegram failed!");
         return;
     }
 
@@ -299,13 +299,13 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     client.print(payloadFooter);  // Send the closing boundary
 
     // Wait for response from Telegram
-    Serial.println("📨 Waiting for response...");
+    Serial.println("Waiting for response...");
     while (client.connected()) {
         String response = client.readStringUntil('\n');
         //Serial.println(response);
         if (response == "\r") break;  // Headers end at a blank line
     }
 
-    Serial.println("✅ Photo sent successfully!");
+    Serial.println("Photo sent successfully!");
     client.stop();  // Close connection
 }
