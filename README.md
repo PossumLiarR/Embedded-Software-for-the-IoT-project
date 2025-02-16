@@ -38,13 +38,11 @@ To bring this project to life, we will need the following:
 - string.h
 - stdint.h
 - stdbool.h
-- ti/devices/msp432p4xx/driverlib/driverlib.h
+- driverlib.h
 - "esp_camera.h"         ESP32-CAM camera driver
-- "driver/uart.h"        UART communication driver for ESP32
 - WiFi.h                 ESP32 wifi support
 - HTTPClient.h           Library to easily make HTTP GET, POST and PUT requests to a web server
 - WiFiClientSecure.h     Expands WiFi.h with SSL TLS secure connections
-- JPEGDEC.h              Library for decoding JPEG images on microcontrollers and low-power devices
 
 <br>
 
