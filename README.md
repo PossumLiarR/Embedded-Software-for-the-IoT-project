@@ -53,7 +53,7 @@ To bring this project to life, we will need the following:
 Clone the repository.
 
 #### Schematic
-<img src="imgs/scheme.png" width="400" height="200" alt="scheme">
+<img src="imgs/scheme.png" width="800" height="400" alt="scheme">
 
 #### How to build
 1. Assemble the servo supports;
