@@ -117,7 +117,7 @@ void loop(){
     if(frames_without_motion >= MOTION_LIMIT){         //If there has been no movements for MOTION_LIMIT frames, then it resets to default position
          Serial2.print('C');
          Serial.print('C');
-         delay(1200);
+         delay(500);
          esp_camera_fb_return(frame);
          frame = esp_camera_fb_get();
          memcpy(prevFrame, frame->buf, frame->len);
