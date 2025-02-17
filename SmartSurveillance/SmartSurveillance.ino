@@ -28,7 +28,7 @@
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-#define THRESHOLD_VALUE           128   // Imposta il valore di soglia
+#define THRESHOLD_VALUE           128   // Set threshold value
 
 //Motion Detection Constants
 #define FRAME_WIDTH               320   // Width of the captured frame 320
@@ -39,11 +39,12 @@
 #define MOTION_LIMIT               30   //Max number of frames without motion detectable before resetting in default position
 #define DEBUG                    true   //Debug prints
 
+//Motion Detection Variables
 int frames_without_motion = 0;
 int image_counter_to_send = 0;
 char prevDir = 'C';
-//Motion Detection Variables
 uint8_t* prevFrame;  // Pointer to PSRAM buffer 
+
 //Function Prototypes
 void setupCamera();
 void sendPhotoTelegram();
@@ -192,12 +193,16 @@ void setupCamera() {
         return;
     }
 }
+
+//Helper function to find max
 void updateMax(int *maxDiff, char *direction, int newDiff, char newDirection) {
     if (newDiff > *maxDiff) {
         *maxDiff = newDiff;
         *direction = newDirection;
     }
 }
+
+//Function that finds the direction (region) with maximum movement
 char findMaxDirection(int leftDiff, int rightDiff, int centerDiff, int upDiff, int downDiff) {
     char direction = 'N'; // Default: No movement
     int maxDiff = 0;
@@ -209,21 +214,24 @@ char findMaxDirection(int leftDiff, int rightDiff, int centerDiff, int upDiff, i
     updateMax(&maxDiff, &direction, centerDiff, 'C');
     return direction;
 }
+
+//Function that detects wether that detects movement by comparing frames
 char detectMotion(uint8_t* frame, int lenght) {
     if (!prevFrame) {
         prevFrame = (uint8_t*) ps_malloc(lenght);
         if (!prevFrame) {
             Serial.println("Errore: Memoria insufficiente per prevFrame!");
-            return 'N';  // Nessun movimento
+            return 'N';  // No movement
         }
         memcpy(prevFrame, frame, lenght);
-        return 'N';  // Nessun movimento alla prima esecuzione
+        return 'N';  // No movement during the first iteration
     }
 
     int leftDiff = 0, rightDiff = 0, centerDiff = 0;
     int upDiff = 0, downDiff = 0;
     int motionPixels = 0;
-
+    
+    //compare each pixel of frame and prevFrame
     for (int i = 0; i < lenght; i++) {
         int diff = abs(frame[i] - prevFrame[i]);
 
@@ -232,7 +240,7 @@ char detectMotion(uint8_t* frame, int lenght) {
             int x = i % FRAME_WIDTH;
             int y = i / FRAME_WIDTH;
 
-            // Localizzazione movimento
+            // Localization of movement
             if (x < FRAME_WIDTH / 3) leftDiff++;
             else if (x > 2 * FRAME_WIDTH / 3) rightDiff++;
             else centerDiff++;
@@ -242,10 +250,12 @@ char detectMotion(uint8_t* frame, int lenght) {
         }
     }
 
-    // Salva il frame attuale come nuovo frame precedente
+    // Saves the current frame as the last frame
     //memcpy(prevFrame, frame, lenght);
     return findMaxDirection(leftDiff, rightDiff, centerDiff, upDiff, downDiff);
 }
+
+//Function to send pictures to Telegram via a bot
 void sendPhotoTelegram(uint8_t* frame, size_t len) {
     if(WiFi.status() != WL_CONNECTED){
         Serial.println("WiFi disconnected");
@@ -259,7 +269,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
           0            // Run on Core 0
         );
     }
-    Serial.println("📤 Sending photo to Telegram...");
+    Serial.println(" Sending photo to Telegram...");
 
     WiFiClientSecure client;
     //client.setInsecure();  // Ignore SSL verification (Telegram requires HTTPS)
@@ -268,7 +278,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     String url = "https://api.telegram.org/bot" + String(botToken) + "/sendPhoto";
     
     if (!client.connect("api.telegram.org", 443)) { // Connect to Telegram server
-        Serial.println("❌ Connection to Telegram failed!");
+        Serial.println(" Connection to Telegram failed!");
         return;
     }
 
@@ -301,13 +311,13 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     client.print(payloadFooter);  // Send the closing boundary
 
     // Wait for response from Telegram
-    Serial.println("📨 Waiting for response...");
+    Serial.println(" Waiting for response...");
     while (client.connected()) {
         String response = client.readStringUntil('\n');
         //Serial.println(response);
         if (response == "\r") break;  // Headers end at a blank line
     }
 
-    Serial.println("✅ Photo sent successfully!");
+    Serial.println(" Photo sent successfully!");
     client.stop();  // Close connection
 }
