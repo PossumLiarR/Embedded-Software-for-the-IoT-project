@@ -80,13 +80,13 @@ Once the firmware is loaded on the board, it is sufficient to provide power to i
 
 ## 🧑‍💻 User guide
 To fully harness the capabilities of the system, carefully explore this section! <br>
-1. Make sure the cables do not disconnect while the servo turret is moving. This shouldn't happen if the cables are secure enough but some sudden sharp movements 
+- Make sure the cables do not disconnect while the servo turret is moving. This shouldn't happen if the cables are secure enough but some sudden sharp movements 
    by the camera could cause it to happen. To avoid the camera from moving too much (if you have a budget friendly setup like us), you can use some tape to keep
    it in place.
 
-2. Make sure the ESP32 Cam power supply is 5 V and at least 2 mA. The board is quite power hungry as the ESP never goes to sleep to continue detecting motion.
+- Make sure the ESP32 Cam power supply is 5 V and at least 2 mA. The board is quite power hungry as the ESP never goes to sleep to continue detecting motion.
  
-3. Play around with the motion constants (MOTION_THRESHOLD and MIN_PIXEL_CHANGE) to find the best set up that suits your situation! The MOTION_THRESHOLD is how
+- Play around with the motion constants (MOTION_THRESHOLD and MIN_PIXEL_CHANGE) to find the best set up that suits your situation! The MOTION_THRESHOLD is how
   much 2 pixels must differ from each other for them to be considered different. As a general guideline, you'll want this to be higher for birght environment, as 
   there is more fluctation, and lower for more dark environments. The MIN_PIXEL_CHANGE is how many pixels must be considered different for the system to decide
   there has been motion. We chose 3000 as it's around 4% of the frame's pixels but you can choose something higher for a more rigid system or something
