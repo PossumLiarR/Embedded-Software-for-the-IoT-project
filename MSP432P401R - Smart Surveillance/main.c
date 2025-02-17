@@ -11,10 +11,10 @@
 #define SERVO_MIN       400     // less than 1ms pulse (0 degrees)
 #define SERVO_MAX       2600    // more than 2ms pulse (about 180 degrees)
 #define SERVO_MID       1400    // 1.4-1.5ms pulse (neutral position)
-#define LEFT            2000
-#define RIGHT           1000
-#define UP              1200
-#define DOWN            1600
+#define LEFT            1900
+#define RIGHT           1100
+#define UP              1000
+#define DOWN            1500
 
 typedef enum {
     STATE_CENTER,
@@ -39,6 +39,7 @@ void fn_left(void);
 void fn_right(void);
 void fn_up(void);
 void fn_down(void);
+void sendChar(char TXData);
 
 StateMachine fsm[] = {
                       {STATE_CENTER, fn_center},
@@ -57,8 +58,8 @@ const eUSCI_UART_ConfigV1 uartConfig =
 {
         EUSCI_A_UART_CLOCKSOURCE_SMCLK,                 // SMCLK Clock Source, 3MHz
         6,                                              // BRDIV
-        8,                                             // UCxBRF
-        32,                                              // UCxBRS
+        8,                                              // UCxBRF
+        32,                                             // UCxBRS
         EUSCI_A_UART_NO_PARITY,                         // No Parity
         EUSCI_A_UART_LSB_FIRST,                         // MSB First or LSB
         EUSCI_A_UART_ONE_STOP_BIT,                      // One stop bit
@@ -85,8 +86,6 @@ int main(void)
     initPWM();
     while(1)
     {
-        if(!updated)
-           moveServos(current);
         Interrupt_enableSleepOnIsrExit();
         PCM_gotoLPM0InterruptSafe();
     }
@@ -126,13 +125,15 @@ void EUSCIA2_IRQHandler(void) {
             updated=false;
             //printf("%c\n", RXData);  //debug
         }
+        if(!updated)
+              moveServos(current);
         Interrupt_disableSleepOnIsrExit();
     }
 }
 
 void fn_center(void) {
     setServoPosition(1, SERVO_MID);
-    setServoPosition(2, SERVO_MID);
+    setServoPosition(2, SERVO_MID - 200);
 }
 
 void fn_left(void) {
@@ -156,6 +157,7 @@ void moveServos(States state){
     if(state == STATE_RIGHT && prev == STATE_LEFT) state = STATE_CENTER;
     if(state == STATE_UP && prev == STATE_DOWN) state = STATE_CENTER;
     if(state == STATE_DOWN && prev == STATE_UP) state = STATE_CENTER;
+    //if(state == 'C' && prev == 'L' || prev == '')
     //__disable_irq();
     if(state < NUM_STATES){
          (*fsm[state].stateFunction)();
@@ -173,6 +175,10 @@ void setServoPosition(uint8_t servoNum, uint16_t position) {
     } else if (servoNum == 2) {
         Timer_A_setCompareValue(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_2, position);
     }
+}
+
+void sendChar(char TXData){
+    UART_transmitData(EUSCI_A2_BASE, TXData);
 }
 
 void initUART(void) {
@@ -236,4 +242,3 @@ void initPWM(void) {
     // Start Timer_A0
     Timer_A_startCounter(TIMER_A0_BASE, TIMER_A_UP_MODE);
 }
-
