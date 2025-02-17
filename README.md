@@ -12,11 +12,11 @@ Here is the completed Smart Surveillance system, ready for action!
 
 ## 🛠️ Main features
 Smart Surveillance offers the following key features:
-- Frame to frame motion detection
+- Software based frame to frame motion detection
 - GrayScale imaging for faster and more accurate processing
 - Separation of frame using 3x3 grid to subdivide motion direction
 - Motors centering the camera to the detected movement area
-- Images are sent to a Telegram Bot  
+- Images are sent to Telegram through a bot
 
 <br>
 
