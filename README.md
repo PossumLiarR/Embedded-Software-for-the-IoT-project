@@ -26,6 +26,7 @@ To bring this project to life, we will need the following:
 #### Hardware
 - MSP432P401R Launchpad;
 - ESP32 Cam;
+- Programming module for ESP32 Cam
 - 2 SG90 or MS18 servos;
 - Servo supports and ESP32 Cam mount;
 - USB power supply for ESP32 Cam and USB cable for MSP432P401R;
@@ -50,7 +51,6 @@ To bring this project to life, we will need the following:
 <br>
 
 ## 🎬 Get started
-Clone the repository.
 
 #### Schematic
 <img src="imgs/scheme.png" width="800" height="500" alt="scheme">
@@ -63,7 +63,7 @@ Clone the repository.
 5. Connect pin 14 and pin 15 of ESP32 Cam to pin 3.2 (RX) and pin 3.3 (TX) of MSP432P401R, you connect a ground pin to the ESP32'ground for signal stability;
 6. Attach the ESP32 Cam to the servo supports.
 
-#### How to setup the firmware
+#### How to setup the software
 1. Create a Telegram bot, get the bot token and the chat ID;
 2. Clone the repository;
 3. Download the ESP32 driver on Arduino IDE, if not already istalled;
@@ -72,7 +72,7 @@ Clone the repository.
 6. Connect the ESP32 Cam, follow the schematics (Having a common ground between MSP432P401R and ESP32 CAM improves serial communication reliability);
 7. Build and upload the code to MSP432P401R.
 
-#### How to burn
+#### How to run
 <br>
 Once the firmware is loaded on the board, it is sufficient to provide power to it to run everything properly.
 
@@ -102,8 +102,10 @@ Get a better understanding of the project by checking out the following links! <
 Feel free to have a look at this layout to understand the full contents of the repository!
 ```
 .
-├──
-├── 
+├── MSP432P401R - Smart Surveillance
+    ├── main.c
+├── SmartSurveillance
+    ├── SmartSurveillance.ino
 ├── README.md                           # Repository description file
 ├── LICENSE                             # MIT License
 └──  imgs                               # Images used in README.md
