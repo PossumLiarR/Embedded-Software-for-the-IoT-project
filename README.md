@@ -4,9 +4,9 @@
 ---
 "Eyes Everywhere, Intelligence at Work." 👀🤖 </p>
 Meet Smart Surveillance: an advanced motion-tracking system that detects movement, adjusts the camera automatically, and sends alerts via Telegram for real-time monitoring. <br>
-Here is the completed Smart Surveillance system, ready for action!
-<p align="center">  
-  <img src="imgs/full_project.PNG" width="200" height="200" alt="Built system">
+Here is the completed Smart Surveillance system, ready for action! 
+
+<img src="imgs/full_project.PNG" width="250" height="250" alt="Built system">
 
 ---
 
