@@ -84,7 +84,7 @@ To fully harness the capabilities of the system, carefully explore this section!
    by the camera could cause it to happen. To avoid the camera from moving too much (if you have a budget friendly setup like us), you can use some tape to keep
    it in place.
 
-- Make sure the ESP32 Cam power supply is 5 V and at least 2 mA. The board is quite power hungry as the ESP never goes to sleep to continue detecting motion.
+- Make sure the ESP32 Cam power supply is 5 V and at least 2 mA. The board is quite power hungry as it never goes to sleep to continue detecting motion.
  
 - Play around with the motion constants (MOTION_THRESHOLD and MIN_PIXEL_CHANGE) to find the best set up that suits your situation! The MOTION_THRESHOLD is how
   much 2 pixels must differ from each other for them to be considered different. As a general guideline, you'll want this to be higher for birght environment, as 
