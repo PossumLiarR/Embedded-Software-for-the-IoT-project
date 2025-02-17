@@ -33,15 +33,15 @@
 //Motion Detection Constants
 #define FRAME_WIDTH               320   // Width of the captured frame 320
 #define FRAME_HEIGHT              240   // Height of the captured frame 240
-#define MOTION_THRESHOLD          150   // Threshold to detect motion (increase if too sensitive, decrease if not sensitive enough)
-#define MIN_PIXEL_CHANGE         4000   //Threshold on how many pixels must be different to detect motion
+#define MOTION_THRESHOLD          110   // Threshold to detect motion (increase if too sensitive, decrease if not sensitive enough)
+#define MIN_PIXEL_CHANGE         3000   //Threshold on how many pixels must be different to detect motion
 #define SEND_IMAGE_OVERFLOW_MAX     6   //Spam management variables
-#define MOTION_LIMIT               40   //Max number of frames without motion detectable before resetting in default position
+#define MOTION_LIMIT               30   //Max number of frames without motion detectable before resetting in default position
 #define DEBUG                    true   //Debug prints
 
 int frames_without_motion = 0;
 int image_counter_to_send = 0;
-
+char prevDir = 'C';
 //Motion Detection Variables
 uint8_t* prevFrame;  // Pointer to PSRAM buffer 
 //Function Prototypes
@@ -128,11 +128,8 @@ void loop(){
     if (motionDir != 'N') {
         frames_without_motion = 0;
         Serial.print(motionDir);
-        Serial2.print(motionDir);
-        delay(500);
-
+        if(motionDir != 'C') Serial2.print(motionDir);
         //Sends a picture each SEND_IMAGE_OVERFLOW_MAX motion detections
-        //
         if(++image_counter_to_send >= SEND_IMAGE_OVERFLOW_MAX){
             size_t jpg_len;
             uint8_t *jpg_buf;
@@ -140,18 +137,23 @@ void loop(){
             sendPhotoTelegram(jpg_buf, jpg_len);   //send jpg
             free(jpg_buf);
             image_counter_to_send = 0; //reset the counter
-            delay(2000);
         }
+        //if servos moved, recapture the picture
+        delay(500);                      //wait for servos to move
+        esp_camera_fb_return(frame);     //release memory
+        frame = esp_camera_fb_get();     //take a new picture
+        prevDir=motionDir;
     }else{
-      image_counter_to_send = 0;
+      image_counter_to_send = 0;   
       ++frames_without_motion;
     }
-
+    //Save in prevFrame, for the next comparison
+    memcpy(prevFrame, frame->buf, frame->len);
     //Release memory used by the frame
     esp_camera_fb_return(frame);
 
     //Delay to reduce CPU usage
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    //vTaskDelay(100 / portTICK_PERIOD_MS);
 }
 //Function to Initialize the Camera
 void setupCamera() {
@@ -241,7 +243,7 @@ char detectMotion(uint8_t* frame, int lenght) {
     }
 
     // Salva il frame attuale come nuovo frame precedente
-    memcpy(prevFrame, frame, lenght);
+    //memcpy(prevFrame, frame, lenght);
     return findMaxDirection(leftDiff, rightDiff, centerDiff, upDiff, downDiff);
 }
 void sendPhotoTelegram(uint8_t* frame, size_t len) {
@@ -266,7 +268,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     String url = "https://api.telegram.org/bot" + String(botToken) + "/sendPhoto";
     
     if (!client.connect("api.telegram.org", 443)) { // Connect to Telegram server
-        Serial.println("Connection to Telegram failed!");
+        Serial.println("❌ Connection to Telegram failed!");
         return;
     }
 
@@ -299,13 +301,13 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
     client.print(payloadFooter);  // Send the closing boundary
 
     // Wait for response from Telegram
-    Serial.println("Waiting for response...");
+    Serial.println("📨 Waiting for response...");
     while (client.connected()) {
         String response = client.readStringUntil('\n');
         //Serial.println(response);
         if (response == "\r") break;  // Headers end at a blank line
     }
 
-    Serial.println("Photo sent successfully!");
+    Serial.println("✅ Photo sent successfully!");
     client.stop();  // Close connection
 }
