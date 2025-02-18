@@ -86,7 +86,6 @@ void setup(){
   }
   
   setupCamera();                              //Initializes the camera
-  
   memset(prevFrame, 0, sizeof(prevFrame));    //Initializes previous frame buffer (sets all pixels to 0)    
   Serial.printf("ESP32-CAM Ready!\n");
 }
@@ -153,6 +152,7 @@ void wifiTask(void *pvParameters){
   WiFi.begin(ssid, password);
   while(WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
+  //delay(500);
   }
   Serial.println("\nConnected to Wi-Fi!");
   vTaskDelete(NULL);  //Task deletes itself after connecting
@@ -277,7 +277,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
   
   Serial.println("Sending photo to Telegram...");
   WiFiClientSecure client;
-//client.setInsecure();                     //Ignores SSL verification (Vulnerability to MITM attack)   
+//client.setInsecure();                     //Ignores SSL verification (Dangerous: Higher vulnerability to MITM attacks)   
   client.setCACert(telegram_root_ca);       //If certificate is not expired, HTTP -> HTTPS
     
 //Telegram API URL construction
