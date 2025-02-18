@@ -58,7 +58,7 @@ To bring this project to life, we will need the following:
 Embark on your journey to build and run your own system by following the steps outlined in this comprehensive guide!
 
 #### Schematic
-<p align="center"> <kbd> <img src="imgs/schematic.png"  width="750" height="450" alt="Scheme"> </kbd>
+<p align="center"> <kbd> <img src="imgs/schematic.png"  width="750" height="450" alt="Schematic"> </kbd>
 
 #### How to build
 1. Assemble the Pan-Tilt servo support alongside the ESP32-CAM mounting bracket for the main foundation
@@ -101,8 +101,13 @@ Once the firmware is loaded on both boards, it is sufficient to provide power to
 To fully harness the capabilities of the system, carefully explore this section! <br>
 
 #### Workflow
-<p align="center"> <kbd> <img src="imgs/schematic.png"  width="750" height="450" alt="Scheme"> </kbd>
+<p align="center"> <kbd> <img src="imgs/architecture.png"  width="750" height="450" alt="Workflow"> </kbd>
+   
+The system operates seamlessly and autonomously. Once the camera is positioned, the user is free to engage in any activity and carry on with his day, assured that any detected movement will trigger an instant alert with a snapshot capturing the target. The camera continuously monitors for motion, and if a target begins to exit the frame, it will automatically adjust its position, tracking the movement. In the meanwhile, it continuously performs a range of checks across various parameters, ensuring a responsive and a controlled experience without any issues. For a clearer understanding of the software architecture, refer to the diagrams above.
 
+Have a look at an example of an image captured by the camera!
+
+<p align="center"> <kbd> <img src="imgs/snapshot.png" alt="Telegram_Snapshot"> </kbd>
 
 #### Extra notes
 - Ensure the cables remain securely connected while the servo turret is in motion. While this is generally not an issue if the cables are properly secured, sudden, sharp camera movements may cause disconnections. To prevent excessive camera movement, especially in a budget-friendly setup like ours, consider using tape to keep the camera in place
