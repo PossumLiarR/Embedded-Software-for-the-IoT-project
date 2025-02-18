@@ -89,7 +89,7 @@ git clone https://github.com//PossumLiarR/Smart-Surveillance.git
 11. Build and run the project on CCS to load the software on the MSP432   
 12. Gently detach the ESP32 Cam from its support, connect it to the programming module, upload the Arduino code on it and reposition the camera back into place.
 
-#### How to run
+#### How to burn
 Once the firmware is loaded on both boards, it is sufficient to provide power to them to run everything properly.
 
 
@@ -99,17 +99,17 @@ Once the firmware is loaded on both boards, it is sufficient to provide power to
 
 ## 🧑‍💻 User guide
 To fully harness the capabilities of the system, carefully explore this section! <br>
-- Make sure the cables do not disconnect while the servo turret is moving. This shouldn't happen if the cables are secure enough but some sudden sharp movements 
-   by the camera could cause it to happen. To avoid the camera from moving too much (if you have a budget friendly setup like us), you can use some tape to keep
-   it in place.
 
-- Make sure the ESP32 Cam power supply is 5 V and at least 2 mA. The board is quite power hungry as it never goes to sleep to continue detecting motion.
- 
-- Play around with the motion constants (MOTION_THRESHOLD and MIN_PIXEL_CHANGE) to find the best set up that suits your situation! The MOTION_THRESHOLD is how
-  much 2 pixels must differ from each other for them to be considered different. As a general guideline, you'll want this to be higher for birght environment, as 
-  there is more fluctation, and lower for more dark environments. The MIN_PIXEL_CHANGE is how many pixels must be considered different for the system to decide
-  there has been motion. We chose 3000 as it's around 4% of the frame's pixels but you can choose something higher for a more rigid system or something
-  lower for a less strict system.
+#### Workflow
+<p align="center"> <kbd> <img src="imgs/schematic.png"  width="750" height="450" alt="Scheme"> </kbd>
+
+
+#### Extra notes
+- Ensure the cables remain securely connected while the servo turret is in motion. While this is generally not an issue if the cables are properly secured, sudden, sharp camera movements may cause disconnections. To prevent excessive camera movement, especially in a budget-friendly setup like ours, consider using tape to keep the camera in place
+- Ensure the ESP32-CAM power supply provides +5V with at least 2mA current. The board is relatively power-hungry as it remains active continuously, never entering sleep mode, in order to constantly detect motion
+- Play around with the motion constants (MOTION_THRESHOLD and MIN_PIXEL_CHANGE) to fine-tune the system for your specific setup! The MOTION_THRESHOLD determines the minimum difference required between two pixels for them to be classified as different. As a general rule, you'll want to set this higher in brighter environments, where more fluctuation occurs, and lower in darker settings. The MIN_PIXEL_CHANGE defines how many pixels need to differ for the system to register motion. We’ve set it to 3000 (approximately 4% of the frame's pixels), but feel free to adjust it: use a higher value for a more rigid system or a lower one for a more lenient approach
+
+
 
 
 <br>
@@ -129,13 +129,17 @@ Get a better understanding of the project by checking out the following links! <
 Feel free to have a look at this layout to understand the full contents of the repository!
 ```
 .
-├── MSP432P401R - Smart Surveillance
-    ├── main.c
-├── SmartSurveillance
-    ├── SmartSurveillance.ino
-├── README.md                           # Repository description file
-├── LICENSE                             # MIT License
-└──  imgs                               # Images used in README.md
+├── code
+│   ├── ESP32CAM_Smart_Surveillance              # Arduino source code
+│   │   ├── ESP32CAM_Smart_Surveillance.ino      # Arduino: main
+│   │   └── config.h                             # Arduino: configuration_library
+│   └── MSP432P401R_Smart_Surveillance           # CCS source code
+│       ├── main.c                               # CCS: main
+│       └── ...
+├── Smart_Surveillance_Presentation.pptx         # Presentation slides                                 
+├── README.md                                    # Repository description file
+├── LICENSE                                      # MIT License
+└──  imgs                                        # Images used in README.md
       └── ...
 ```
 
