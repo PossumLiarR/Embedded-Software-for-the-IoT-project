@@ -245,7 +245,7 @@ char detectMotion(uint8_t* frame, int lenght) {
     int y = i / FRAME_WIDTH;
     
     int diff = abs(frame[i] - prevFrame[i]);      //... it compares its value with the prevFrame value (diff). ...  
-    if(diff > MOTION_THRESHOLD) {                 //... If diff overcomes the custom threshold, then the pixel gets considered as part of a motion and gets localized.
+    if(diff > MOTION_THRESHOLD) {                 //... If diff overcomes the custom threshold, then the pixel gets considered as part of a motion and gets localized
       motionPixels++;
       
       //Motion localization
