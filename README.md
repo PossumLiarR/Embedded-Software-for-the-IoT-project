@@ -156,11 +156,12 @@ Feel free to have a look at this layout to understand the full contents of the r
 
 ## 🚀 About us
 Currently, our development team is composed of:
-|Name|Email|Contribution|
-|--|--|--|
-|🎩 Leonardo Chistè|leonardo.chiste@studenti.unitn.it|*TBD...(Completare con il contributo di Leonardo)*|
-|🌟 Rayan Alessandro Tekaia|rayan.tekaia@studenti.unitn.it|*TBD...(Completare con il contributo di Rayan)*|
-|🌟 Alberto Battistini|alberto.battistini@studenti.unitn.it|*TBD...(Completare con il contributo di Alberto)*|
-|🌟 Saksham Bakshi|saksham.bakshi@studenti.unitn.it|*TBD...(Completare con il contributo di Sak)*|
+|Name|Email|
+|--|--|
+|🎩 Leonardo Chistè|leonardo.chiste@studenti.unitn.it|
+|🌟 Rayan Alessandro Tekaia|rayan.tekaia@studenti.unitn.it|
+|🌟 Alberto Battistini|alberto.battistini@studenti.unitn.it|
+|🌟 Saksham Bakshi|saksham.bakshi@studenti.unitn.it|
 
+All team members collaboratively engaged in pair programming throughout the project, contributing equally to the development and refinement of the final outcome.
 If you have any feedback, please reach out to us. Of course, contributions are also always welcome!
