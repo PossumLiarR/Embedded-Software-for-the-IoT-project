@@ -101,7 +101,7 @@ Once the firmware is loaded on both boards, it is sufficient to provide power to
 To fully harness the capabilities of the system, carefully explore this section! <br>
 
 #### Workflow
-<p align="center"> <kbd> <img src="imgs/architecture.png"  width="750" height="450" alt="Workflow"> </kbd>
+<p align="center"> <kbd> <img src="imgs/architecture.png" alt="Workflow"> </kbd>
    
 The system operates seamlessly and autonomously. Once the camera is positioned, the user is free to engage in any activity and carry on with his day, assured that any detected movement will trigger an instant alert with a snapshot capturing the target. The camera continuously monitors for motion, and if a target begins to exit the frame, it will automatically adjust its position, tracking the movement. In the meanwhile, it continuously performs a range of checks across various parameters, ensuring a responsive and a controlled experience without any issues. For a clearer understanding of the software architecture, refer to the diagrams above.
 
