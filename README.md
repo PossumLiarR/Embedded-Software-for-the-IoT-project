@@ -58,47 +58,42 @@ To bring this project to life, we will need the following:
 Embark on your journey to build and run your own system by following the steps outlined in this comprehensive guide!
 
 #### Schematic
-<p align="center"> <kbd> <img src="imgs/scheme.png"  width="750" height="450" alt="Scheme"> </kbd>
+<p align="center"> <kbd> <img src="imgs/schematic.png"  width="750" height="450" alt="Scheme"> </kbd>
 
 #### How to build
-1. Assemble the Pan-Tilt servo support with the ESP32 Cam mounting bracket;
-2. Insert the servos in the support;
-3. Connect the servos to the MSP432 Launchpad (Check the pinout in the schematic above);
-4. Connect the servos to a power supply: you can use the MSP432 Launchpad's +5V or an external power supply;
-5. Position the ESP32 Cam on its bracket and connect
-6.
-7. Use a USB adaptor to connect the +5V and GND pins of ESP32 Cam, you can use pin 1 and 3 for debug (standart UART interface);
-8. Connect pin 14 and pin 15 of ESP32 Cam to pin 3.2 (RX) and pin 3.3 (TX) of MSP432P401R, you connect a ground pin to the ESP32'ground for signal stability;
-9. Attach the ESP32 Cam to the servo supports.
-
-
-Assemble the servo supports with precision.
-Connect the servo signal cables (orange) to pins 2.4 and 2.5 on the MSP432P401R.
-Power the servos either through the MSP432P401R’s 5V power supply or an external source of your choice.
-Use a USB adapter to link the 5V and GND pins of the ESP32-CAM, and leverage pins 1 and 3 for debugging via the standard UART interface.
-Connect pins 14 and 15 of the ESP32-CAM to pins 3.2 (RX) and 3.3 (TX) on the MSP432P401R, ensuring a stable connection by linking the ground pins for optimal signal integrity.
-Securely attach the ESP32-CAM to the servo supports for a polished finish.
-
-
-- 1x Programming module for ESP32 Cam
-- 2x SG90 or MS18 servomotors
-- 1x USB Power supply for ESP32 Cam & USB cable for MSP432P401R
-- Jumper cables
-- _(Optional) 1x Breadboard_ 
-
+1. Assemble the Pan-Tilt servo support alongside the ESP32-CAM mounting bracket for the main foundation
+2. Carefully insert the servos into the support structure
+3. Connect the servos to the MSP432 Launchpad (refer to the pinout in the schematic above)
+4. Position the ESP32-CAM onto its mounting bracket and link it to the MSP432 Launchpad (pinout details provided in the schematic above)
+5. Power the servos through either the MSP432 Launchpad’s +5V or an external power source
+6. Supply power to the ESP32-CAM via a USB adapter and its USB cable
+7. Ensure all ground connections (GND) are properly linked together to maintain signal integrity and system stability
+8. Place the system in your desired location
 
 #### How to setup the software
-1. Create a Telegram bot, get the bot token and the chat ID;
-2. Clone the repository;
-3. Download the ESP32 driver on Arduino IDE, if not already istalled;
-4. In the config.h file change the ssid, password, bot token and chat token to your WiFi credentials and your bot credentials, make sure the Telegram certificate is still valid;
-5. Upload the code to ESP32 Cam;
-6. Connect the ESP32 Cam, follow the schematics (Having a common ground between MSP432P401R and ESP32 CAM improves serial communication reliability);
-7. Build and upload the code to MSP432P401R.
+1. Clone this GitHub repo by using:
+```
+git clone https://github.com//PossumLiarR/Smart-Surveillance.git
+```
+2. Import `code/MSP432P401R_Smart_Surveillance`'s project in **Code Composer Studio IDE**
+3. Go to: _Project → Properties → Build → Arm Compiler → Include Options_ and add the _source_ directory located in _simplelink_msp432p4_sdk_3_40_01_02/_
+4. Go to: _Project → Properties → Build → Arm Linker → File Search Path_ and add:
+   - _msp432p4xx_driverlib.lib_ directory located in _[..]/source/ti/devices/msp432p4xx/driverlib/ccs/_
+   - _grlib.a_ located in _[..]/source/ti/grlib/lib/ccs/m4f/_
+5. Import `code/ESP32CAM_Smart_Surveillance`'s project in **Arduino IDE**
+6. Download any remaining libraries in both IDEs, if not already installed
+7. Open up **Telegram**, create a Telegram Bot and take note of its token and chat ID
+8. Open the config.h file and insert the bot token and the chat ID
+9. Insert the ssid and password values of a nearby detectable Wi-Fi connection in the same file
+10. In the same file check if the Telegram SSL certificate is still valid: if not, replace it with a new one
+11. Build and run the project on CCS to load the software on the MSP432   
+12. Gently detach the ESP32 Cam from its support, connect it to the programming module, upload the Arduino code on it and reposition the camera back into place.
 
 #### How to run
-<br>
-Once the firmware is loaded on the board, it is sufficient to provide power to it to run everything properly.
+Once the firmware is loaded on both boards, it is sufficient to provide power to them to run everything properly.
+
+
+
 
 <br>
 
