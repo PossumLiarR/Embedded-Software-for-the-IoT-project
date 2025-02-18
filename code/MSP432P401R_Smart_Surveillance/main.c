@@ -12,8 +12,8 @@
 /*-----Global definitions-----*/
 // Constants
 #define PWM_PERIOD      20000   // 20ms (1MHz CLK)
-#define SERVO_MIN       400     // Servomotor degree limit: less than 1ms pulse (0°)
-#define SERVO_MAX       2600    // Servomotor degree limit: more than 2ms pulse (around 180°)
+#define SERVO_MIN       400     // Servomotor degree limit: less than 1ms pulse (0Â°)
+#define SERVO_MAX       2600    // Servomotor degree limit: more than 2ms pulse (around 180Â°)
 #define SERVO_MID       1400    // Servomotor neutral centered position: 1.4 ~ 1.5ms pulse
 #define LEFT            1900    // Servomotor left position
 #define RIGHT           1100    // Servomotor right position
@@ -24,7 +24,6 @@
 char RXData;
 volatile States current = STATE_CENTER;  // Starting conditions
 volatile States prev = STATE_CENTER;
-bool updated = true;
 
 // Customizable UART configuration
 const eUSCI_UART_ConfigV1 uartConfig = {
@@ -47,6 +46,18 @@ const eUSCI_UART_ConfigV1 uartConfig = {
 // - 24 MHz, 9600    -> 156,    4,    0
 // - 24 MHz, 115200  ->  13,    0,   37
 
+/*-----Function headers-----*/
+void initPWM(void);
+void initUART(void);
+void setServoPosition(uint8_t servoNum, uint16_t position);
+void moveServos(States state);
+void fn_center(void);
+void fn_left(void);
+void fn_right(void);
+void fn_up(void);
+void fn_down(void);
+//void sendChar(char TXData);
+
 
 /*-----Building the FSM-----*/
 typedef enum {
@@ -58,11 +69,6 @@ typedef enum {
     NUM_STATES
 } States;
 
-void fn_center(void);
-void fn_left(void);
-void fn_right(void);
-void fn_up(void);
-void fn_down(void);
 
 typedef struct {
     States state;
@@ -78,20 +84,12 @@ StateMachine fsm[] = {
 };
 
 
-/*-----Function headers-----*/
-void initPWM(void);
-void initUART(void);
-void setServoPosition(uint8_t servoNum, uint16_t position);
-void moveServos(States state);
-void sendChar(char TXData);
-
-
 /*-----Main loop-----*/
 int main(void) {
     // Setup
     WDT_A_holdTimer();     // Halting WDT
 
-    // MCLK = HSMCLK = SMCLK = DCO of 3MHz
+    // MCLK = HSMCLK = SMCLK = DCO of 12MHz
     CS_setDCOCenteredFrequency(CS_DCO_FREQUENCY_12);  // Sets DCO to 12 MHz
     initUART();              // Initialize UART
     initPWM();               // Initialize PWM
@@ -118,15 +116,13 @@ void EUSCIA2_IRQHandler(void) {
                 case 'L':   current = STATE_LEFT;   break;
                 case 'R':   current = STATE_RIGHT;  break;
                 case 'U':   current = STATE_UP;     break;
-                case 'D':   current = STATE_DOWN;   break;
+                case 'D':   current = STATE_DOWN;   break; 
+                default:    Interrupt_disableSleepOnIsrExit();  return;
             }
 
-            updated = false;
-          //printf("%c\n", RXData);     // Debug
-        }
-
-        if(!updated)                        // Moves servos in the current position
             moveServos(current);
+            //printf("%c\n", RXData);     // Debug
+        }
 
         Interrupt_disableSleepOnIsrExit();
     }
@@ -171,7 +167,6 @@ void moveServos(States state){
         (*fsm[state].stateFunction)();  // Performs the FSM function (moves the servos)
     }
   //__enable_irq();
-    updated = true;
 }
 
 // Positions servomotors in desired position
@@ -188,17 +183,19 @@ void setServoPosition(uint8_t servoNum, uint16_t position) {
 
 
 // Debug: Transmits data
+/*
 void sendChar(char TXData){
     UART_transmitData(EUSCI_A2_BASE, TXData);
 }
+*/
 
 
 // Initializes UART communication
 void initUART(void) {
     GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P3, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
 
-    GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);    // Red LED off
-    GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);
+    GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);       // Red LED
+    GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN0);    //Red LED off
 
     UART_initModule(EUSCI_A2_BASE, &uartConfig);                            // Sets customized configuration
     UART_enableModule(EUSCI_A2_BASE);                                       // Enables UART
@@ -219,9 +216,9 @@ void initPWM(void) {
 
     // Timer_A0 configuration for PWM control
     Timer_A_UpModeConfig timerConfig = {
-                                       TIMER_A_CLOCKSOURCE_SMCLK,            // CLK Source SMCLK = 3MHz
-                                       TIMER_A_CLOCKSOURCE_DIVIDER_12,       // Prescaler: 3MHz / 3 = 1MHz
-                                       PWM_PERIOD,                           // Timer period
+                                       TIMER_A_CLOCKSOURCE_SMCLK,            // CLK Source SMCLK = 12MHz
+                                       TIMER_A_CLOCKSOURCE_DIVIDER_12,       // Prescaler: 12MHz / 12 = 1MHz
+                                       PWM_PERIOD,                           // Timer period 20 ms
                                        TIMER_A_TAIE_INTERRUPT_DISABLE,       // Enable timer interrupt: NO
                                        TIMER_A_CCIE_CCR0_INTERRUPT_DISABLE,  // Enable CCR0 interrupt: NO
                                        TIMER_A_DO_CLEAR                      // Enable timer counter clearer: YES
