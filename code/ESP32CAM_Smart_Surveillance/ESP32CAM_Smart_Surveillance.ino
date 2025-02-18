@@ -43,8 +43,8 @@
 //Variables
 int frames_without_motion = 0;     
 int image_counter_to_send = 0;
-char prevDir = 'C';               //Starting direction
-uint8_t* prevFrame;               //Pointer to PSRAM buffer 
+//char prevDir = 'C';               //Starting direction
+uint8_t* prevFrame;                 //Pointer to PSRAM buffer 
 
 
 /*-----Function headers-----*/
@@ -134,7 +134,7 @@ void loop(){
     delay(500);                      //Waits for servos to move
     esp_camera_fb_return(frame);     //Releases the allocated memory of the frame
     frame = esp_camera_fb_get();     //If servos moved in this iteration, recaptures the picture
-    prevDir = motionDir;
+  //prevDir = motionDir;
   }
   else{                           //When motion is NOT detected in this iteration
     image_counter_to_send = 0;   
