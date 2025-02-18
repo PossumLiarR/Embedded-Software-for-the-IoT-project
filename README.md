@@ -142,7 +142,7 @@ Feel free to have a look at this layout to understand the full contents of the r
 │   └── MSP432P401R_Smart_Surveillance           # CCS source code
 │       ├── main.c                               # CCS: main
 │       └── ...
-├── Smart_Surveillance_Presentation.pptx         # Presentation slides                                 
+├── Smart_Surveillance_Presentation.pptx         # Presentation slides
 ├── README.md                                    # Repository description file
 ├── LICENSE                                      # MIT License
 └──  imgs                                        # Images used in README.md
