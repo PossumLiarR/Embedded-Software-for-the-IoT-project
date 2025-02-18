@@ -3,7 +3,7 @@
 
 ---
 "Eyes Everywhere, Intelligence at Work." 👀🤖 </p>
-Meet Smart Surveillance: an advanced motion-tracking system that detects movement, adjusts the camera automatically, and sends alerts via Telegram for real-time monitoring. <br>
+Meet Smart Surveillance: a cutting-edge motion-tracking system that detects movement, auto-adjusts the camera, and delivers instant alerts via Telegram, keeping you informed in real time! <br>
 Here is the completed Smart Surveillance system, ready for action! 
 
 <p align="center"> 
@@ -13,11 +13,14 @@ Here is the completed Smart Surveillance system, ready for action!
 
 ## 🛠️ Main features
 Smart Surveillance offers the following key features:
-- Software based frame to frame motion detection
-- GrayScale imaging for faster and more accurate processing
-- Separation of frame using 3x3 grid to subdivide motion direction
-- Motors centering the camera to the detected movement area
-- Images are sent to Telegram through a bot
+- **Software-Based Motion Detection:** Detects movement through frame-to-frame analysis
+- **Grayscale Imaging:** Enhances processing speed and accuracy
+- **3×3 Grid Analysis:** Subdivides frames to pinpoint motion direction
+- **Automated Camera Adjustment:** Motors center the camera on detected movement
+- **Instant Image Alerts:** Captures and sends images via a Telegram bot
+
+
+
 
 <br>
 
@@ -25,36 +28,38 @@ Smart Surveillance offers the following key features:
 To bring this project to life, we will need the following:
 
 #### Hardware
-- MSP432P401R Launchpad;
-- ESP32 Cam;
-- Programming module for ESP32 Cam
-- 2 SG90 or MS18 servos;
-- Servo supports and ESP32 Cam mount;
-- USB power supply for ESP32 Cam and USB cable for MSP432P401R;
-- Jumper cables and breadboard (optional).
+- 1x TI MSP432P401R Launchpad
+- 1x AI-Thinker ESP32 Cam
+- 1x Programming module for ESP32 Cam
+- 2x SG90 or MS18 servomotors
+- 1x Pan-Tilt 2-axis servomotor support
+- 1x ESP32 Cam mounting bracket
+- 1x USB Power supply for ESP32 Cam & USB cable for MSP432P401R
+- Jumper cables
+- _(Optional) 1x Breadboard_ 
 
 #### Software
 ##### IDE:
-- Code Composer Studio for MSP432 Launchpad
-- Arduino IDE for the ESP32 Cam
-##### Libraries:
-- stdio.h        
-- stdlib.h       
-- string.h
-- stdint.h
-- stdbool.h
-- driverlib.h
-- "esp_camera.h"         ESP32-CAM camera driver
-- WiFi.h                 ESP32 wifi support
-- HTTPClient.h           Library to easily make HTTP GET, POST and PUT requests to a web server
-- WiFiClientSecure.h     Expands WiFi.h with SSL TLS secure connections
+- Code Composer Studio Integrated Development Environment (for MSP432 Launchpad)
+- Arduino Integrated Development Environment (for ESP32 Cam)
+
+##### Supporting libraries:
+- Standard libraries: <stdio.h> <stdlib.h> <string.h> <stdint.h> <stdbool.h>
+- Camera driver: "esp_camera.h"
+- Wi-Fi and Internet support libraries: <WiFi.h> <WiFiClientSecure.h> <HTTPClient.h>
+- Hardware serial library for wiring: <HardwareSerial.h>
+- MSP432 DriverLib: <ti/devices/msp432p4xx/driverlib/driverlib.h>
+
+
+
 
 <br>
 
 ## 🎬 Get started
+Embark on your journey to build and run your own system by following the steps outlined in this comprehensive guide!
 
 #### Schematic
-<img src="imgs/scheme.png" width="800" height="500" alt="scheme">
+<kbd> <img src="imgs/scheme.png"  width="800" height="500" alt="Scheme"> </kbd>
 
 #### How to build
 1. Assemble the servo supports;
