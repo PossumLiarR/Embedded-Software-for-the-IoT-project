@@ -114,11 +114,11 @@ void EUSCIA2_IRQHandler(void) {
         if(RXData != '\n'){                    // Selects camera position based on the data received
             prev = current;
             switch(RXData){
-                case 'C':   current = STATE_CENTER; break;
-                case 'L':   current = STATE_LEFT;   break;
-                case 'R':   current = STATE_RIGHT;  break;
-                case 'U':   current = STATE_UP;     break;
-                case 'D':   current = STATE_DOWN;   break; 
+                case 'C':   current = STATE_CENTER;             break;
+                case 'L':   current = STATE_LEFT;               break;
+                case 'R':   current = STATE_RIGHT;              break;
+                case 'U':   current = STATE_UP;                 break;
+                case 'D':   current = STATE_DOWN;               break; 
                 default:    Interrupt_disableSleepOnIsrExit();  return;
             }
                 
