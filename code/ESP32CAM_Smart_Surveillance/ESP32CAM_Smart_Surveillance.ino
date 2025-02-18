@@ -86,7 +86,6 @@ void setup(){
   }
   
   setupCamera();                              //Initializes the camera
-//WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);  //Handle error -> cam_hal: EV-VSYNC-OVF
   
   memset(prevFrame, 0, sizeof(prevFrame));    //Initializes previous frame buffer (sets all pixels to 0)    
   Serial.printf("ESP32-CAM Ready!\n");
@@ -154,7 +153,6 @@ void wifiTask(void *pvParameters){
   WiFi.begin(ssid, password);
   while(WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
-  //delay(500);
   }
   Serial.println("\nConnected to Wi-Fi!");
   vTaskDelete(NULL);  //Task deletes itself after connecting
@@ -187,7 +185,7 @@ void setupCamera() {
   config.pin_sscb_scl = SIOC_GPIO_NUM;                //I2C: SCL pin
   config.pin_pwdn = PWDN_GPIO_NUM;                    //Power down pin (not used)
   config.pin_reset = RESET_GPIO_NUM;                  //Reset pin (not used)
-  config.xclk_freq_hz = 5000000;                      //CLK frequency (suggested: 10MHz)
+  config.xclk_freq_hz = 5000000;                      //CLK frequency (suggested: 5MHz)
   config.pixel_format = PIXFORMAT_GRAYSCALE;          //Pixel format: Grayscale mode for faster processing
   config.frame_size = FRAMESIZE_QVGA;                 //Captured frame resolution -> FRAMESIZE_QVGA = 320x240
   config.jpeg_quality = 12;                           //JPEG quality (the lower the better)
@@ -279,7 +277,7 @@ void sendPhotoTelegram(uint8_t* frame, size_t len) {
   
   Serial.println("Sending photo to Telegram...");
   WiFiClientSecure client;
-//client.setInsecure();                     //Ignores SSL verification (not useful because Telegram requires HTTPS)   
+//client.setInsecure();                     //Ignores SSL verification (Vulnerability to MITM attack)   
   client.setCACert(telegram_root_ca);       //If certificate is not expired, HTTP -> HTTPS
     
 //Telegram API URL construction
