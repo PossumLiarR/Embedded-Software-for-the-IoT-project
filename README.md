@@ -6,8 +6,7 @@
 Meet Smart Surveillance: a cutting-edge motion-tracking system that detects movement, auto-adjusts the camera, and delivers instant alerts via Telegram, keeping you informed in real time! <br>
 Here is the completed Smart Surveillance system, ready for action! 
 
-<p align="center"> 
-<kbd> <img src="imgs/full_project.jpg"  width="400" height="384" alt="Full built system"> </kbd>
+<p align="center"> <kbd> <img src="imgs/full_project.jpg"  width="400" height="384" alt="Full built system"> </kbd>
 
 ---
 
@@ -39,11 +38,11 @@ To bring this project to life, we will need the following:
 - _(Optional) 1x Breadboard_ 
 
 #### Software
-##### IDE:
+##### IDE
 - Code Composer Studio Integrated Development Environment (for MSP432 Launchpad)
 - Arduino Integrated Development Environment (for ESP32 Cam)
 
-##### Supporting libraries:
+##### Supporting libraries
 - Standard libraries: <stdio.h> <stdlib.h> <string.h> <stdint.h> <stdbool.h>
 - Camera driver: "esp_camera.h"
 - Wi-Fi and Internet support libraries: <WiFi.h> <WiFiClientSecure.h> <HTTPClient.h>
@@ -59,15 +58,34 @@ To bring this project to life, we will need the following:
 Embark on your journey to build and run your own system by following the steps outlined in this comprehensive guide!
 
 #### Schematic
-<kbd> <img src="imgs/scheme.png"  width="800" height="500" alt="Scheme"> </kbd>
+<p align="center"> <kbd> <img src="imgs/scheme.png"  width="750" height="450" alt="Scheme"> </kbd>
 
 #### How to build
-1. Assemble the servo supports;
-2. Connect the servos signal cable (orange) to pin 2.4 and 2.5 of MSP432P401R;
-3. To power the servos, you can use the MSP432P401R's 5 V power supplies, or use an external power supply;
-4. Use a USB adaptor to connect the 5 V and GND pins of ESP32 Cam, you can use pin 1 and 3 for debug (standart UART interface);
-5. Connect pin 14 and pin 15 of ESP32 Cam to pin 3.2 (RX) and pin 3.3 (TX) of MSP432P401R, you connect a ground pin to the ESP32'ground for signal stability;
-6. Attach the ESP32 Cam to the servo supports.
+1. Assemble the Pan-Tilt servo support with the ESP32 Cam mounting bracket;
+2. Insert the servos in the support;
+3. Connect the servos to the MSP432 Launchpad (Check the pinout in the schematic above);
+4. Connect the servos to a power supply: you can use the MSP432 Launchpad's +5V or an external power supply;
+5. Position the ESP32 Cam on its bracket and connect
+6.
+7. Use a USB adaptor to connect the +5V and GND pins of ESP32 Cam, you can use pin 1 and 3 for debug (standart UART interface);
+8. Connect pin 14 and pin 15 of ESP32 Cam to pin 3.2 (RX) and pin 3.3 (TX) of MSP432P401R, you connect a ground pin to the ESP32'ground for signal stability;
+9. Attach the ESP32 Cam to the servo supports.
+
+
+Assemble the servo supports with precision.
+Connect the servo signal cables (orange) to pins 2.4 and 2.5 on the MSP432P401R.
+Power the servos either through the MSP432P401R’s 5V power supply or an external source of your choice.
+Use a USB adapter to link the 5V and GND pins of the ESP32-CAM, and leverage pins 1 and 3 for debugging via the standard UART interface.
+Connect pins 14 and 15 of the ESP32-CAM to pins 3.2 (RX) and 3.3 (TX) on the MSP432P401R, ensuring a stable connection by linking the ground pins for optimal signal integrity.
+Securely attach the ESP32-CAM to the servo supports for a polished finish.
+
+
+- 1x Programming module for ESP32 Cam
+- 2x SG90 or MS18 servomotors
+- 1x USB Power supply for ESP32 Cam & USB cable for MSP432P401R
+- Jumper cables
+- _(Optional) 1x Breadboard_ 
+
 
 #### How to setup the software
 1. Create a Telegram bot, get the bot token and the chat ID;
