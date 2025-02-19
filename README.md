@@ -82,12 +82,13 @@ git clone https://github.com//PossumLiarR/Smart-Surveillance.git
    - _grlib.a_ located in _[..]/source/ti/grlib/lib/ccs/m4f/_
 5. Import `code/ESP32CAM_Smart_Surveillance`'s project in **Arduino IDE**
 6. Download any remaining libraries in both IDEs, if not already installed
-7. Open up **Telegram**, create a Telegram Bot and take note of its token and chat ID
-8. Open the config.h file and insert the bot token and the chat ID
-9. Insert the ssid and password values of a nearby detectable Wi-Fi connection in the same file
-10. In the same file check if the Telegram SSL certificate is still valid: if not, replace it with a new one
-11. Build and run the project on CCS to load the software on the MSP432   
-12. Gently detach the ESP32 Cam from its support, connect it to the programming module, upload the Arduino code on it and reposition the camera back into place.
+7. Open up **Telegram**, search "BotFather" and follow the steps to create a Telegram Bot. Be sure to take note of its token
+8. Next, search "UserINFO ID Bot" and follow the steps to get the chat ID
+9. Open the config.h file and insert the bot token and the chat ID
+10. Insert the ssid and password values of a nearby detectable Wi-Fi connection in the same file
+11. In the same file check if the Telegram SSL certificate is still valid: if not, replace it with a new one
+12. Build and run the project on CCS to load the software on the MSP432   
+13. Gently detach the ESP32 Cam from its support, connect it to the programming module, upload the Arduino code on it and reposition the camera back into place.
 
 #### How to burn
 Once the firmware is loaded on both boards, it is sufficient to provide power to them to run everything properly.
