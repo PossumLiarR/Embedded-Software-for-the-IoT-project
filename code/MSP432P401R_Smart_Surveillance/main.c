@@ -27,7 +27,7 @@ volatile States prev = STATE_CENTER;
 
 // Customizable UART configuration
 const eUSCI_UART_ConfigV1 uartConfig = {
-        EUSCI_A_UART_CLOCKSOURCE_SMCLK,                 // CLK Source: SMCLK (3MHz)
+        EUSCI_A_UART_CLOCKSOURCE_SMCLK,                 // CLK Source: SMCLK (12MHz)
         6,                                              // BRDIV (Prescalers)
         8,                                              // UCxBRF
         32,                                             // UCxBRS
